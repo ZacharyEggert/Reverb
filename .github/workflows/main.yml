@@ -2,7 +2,7 @@ name: CI
 on:
   push:
     branches:
-      - "**"
+      - '**'
 
 jobs:
   build:
@@ -15,3 +15,5 @@ jobs:
           node-version: 16.x
 
       - run: yarn ci
+        env:
+          REVERB_TOKEN: ${{ secrets.REVERB_TOKEN }}
