@@ -2,4 +2,10 @@
 /**
  * @type {import('prettier').Options}
  */
-module.exports = {};
+module.exports = {
+  tabWidth: 2,
+  arrowParens: "always",
+  semi: true,
+  singleQuote: true,
+  trailingComma: "all",
+};
