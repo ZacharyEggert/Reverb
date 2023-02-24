@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 type ReverbClientOptions = {
   apiKey: string;
   baseURL?: string;
@@ -41,4 +43,11 @@ export default class ReverbApiClient {
   get headers() {
     return this._headers;
   }
+
+  get = async (path: string = '') => {
+    const response = await axios.get(`${this.baseURL}${path}`, {
+      headers: this.headers,
+    });
+    return response.data;
+  };
 }
