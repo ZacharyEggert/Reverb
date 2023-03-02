@@ -5,6 +5,12 @@ import ReverbClient from './index';
 import dotenv from 'dotenv';
 dotenv.config();
 
+export const setupReverbClient = () => {
+  if (!process.env.REVERB_TOKEN)
+    throw new Error('No API key found in environment variables');
+  return new ReverbClient({ apiKey: process.env.REVERB_TOKEN });
+};
+
 describe('Environment', () => {
   it('API Key', () => {
     expect(process.env.REVERB_TOKEN).not.toBeUndefined();

@@ -181,15 +181,15 @@ let response: ReverbApiResponse = {
   },
 };
 
-type ReverbApiResponse<T = {}> = T & {
+export type ReverbApiResponse<T = {}> = T & {
   _links: ReverbApiLinks | ReverbApiLinksSecured;
 };
 
-type ReverbApiLinks = {
+export type ReverbApiLinks = {
   [key: string]: ReverbApiLink | ReverbApiLinks | ReverbApiLinksSecured;
 };
 
-type ReverbApiLinksSecured = {
+export type ReverbApiLinksSecured = {
   requires_login: true;
 } & {
   [key: string]:
@@ -199,12 +199,12 @@ type ReverbApiLinksSecured = {
     | ReverbApiLinks;
 };
 
-type ReverbApiLink = {
+export type ReverbApiLink = {
   href: string;
   requires_login?: boolean;
 };
 
-type ReverbApiResponseWithPagination<T = {}> = ReverbApiResponse<T> & {
+export type ReverbApiResponseWithPagination<T = {}> = ReverbApiResponse<T> & {
   total: number;
   current_page: number;
   total_pages: number;
@@ -213,3 +213,20 @@ type ReverbApiResponseWithPagination<T = {}> = ReverbApiResponse<T> & {
     prev: ReverbApiLink;
   };
 };
+
+export type ReverbClientOptions = {
+  apiKey: string;
+  baseURL?: string;
+  headers?: Record<string, string>;
+};
+
+type pathSection = `/${string}`;
+
+type path3 =
+  | pathSection
+  | `${pathSection}${pathSection}`
+  | `${pathSection}${pathSection}${pathSection}`;
+
+export type ReverbApiPath = path3 | `${path3}${path3}`;
+
+const Path: ReverbApiPath = '/';
